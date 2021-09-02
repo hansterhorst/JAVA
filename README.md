@@ -1,2 +1,2 @@
 # JAVA
-Little projects for learning JAVA
+Little projects to learn JAVA
