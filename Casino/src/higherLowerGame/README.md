@@ -1,5 +1,5 @@
 #   Higher Lower Game
-Je gaat het spel Higher Lower maken. De speler moet een nummer raden van 1 t/m 100. 
+Je gaat het spel Higher Lower maken. De speler moet een getal raden tussen 1 t/m 100. 
 ## Spelverloop
 
 1. De speler start het spel (je start de applicatie door het starten van de ‘main’ methode).
