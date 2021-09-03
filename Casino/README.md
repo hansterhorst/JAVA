@@ -10,4 +10,4 @@ Casino Royal is een casino met meerdere locaties in Nederland waar verschillende
 De applicatie die je gaat ontwikkelen, zal een **command line applicatie** zijn waar met casino munten verschillende spellen gespeeld kunnen worden. Tijdens de opdrachten ga je één voor één de verschillende spellen bouwen, om ze uiteindelijk te combineren tot één volledige casino applicatie.
 
 ## Spellen:
-1. Higher Lower game.
+1. **Higher Lower game**. Een spel om een getal te raden tussen 1 t/m 100.
