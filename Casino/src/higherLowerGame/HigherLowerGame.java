@@ -9,6 +9,7 @@ public class HigherLowerGame {
     private int randomNumber;
     private int guessedNumber;
     private int roundCount;
+    private String name;
 
     public HigherLowerGame(Scanner inputScanner) {
         this.inputScanner = inputScanner;
@@ -21,37 +22,64 @@ public class HigherLowerGame {
         System.out.println(randomNumber);
 
         System.out.println("What is your name");
-        String name = inputScanner.nextLine();
-        System.out.println("Hello, " + name + ". Welcome to Higher Lower");
+        setName(inputScanner.nextLine());
+        System.out.println("Hello, " + getName() + ". Welcome to Higher Lower");
 
         System.out.println("Guess a number from 1 t/m 100");
-        guessedNumber = inputScanner.nextInt();
-        System.out.println(guessedNumber);
+        setGuessedNumber(inputScanner.nextInt());
 
-        while (guessedNumber != randomNumber) {
-            if (guessedNumber < randomNumber) {
+        while (getGuessedNumber() != getRandomNumber() || getGuessedNumber() == getRandomNumber()) {
+            if (getGuessedNumber() < getRandomNumber()) {
                 System.out.println("That number is to low!");
-                roundCount += 1;
+                setRoundCount();
                 newGuess();
             }
 
-            if (guessedNumber > randomNumber) {
+            if (getGuessedNumber() > getRandomNumber()) {
                 System.out.println("That number is too high!");
-                roundCount += 1;
+                setRoundCount();
                 newGuess();
             }
 
-            if (guessedNumber == randomNumber) {
+            if (getGuessedNumber() == getRandomNumber()) {
                 roundCount += 1;
-                System.out.println("Correct! " + name + ". You guessed the number in " + roundCount + " rounds");
+                System.out.println("Correct! " + getName() + ". You guessed the number in " + getRoundCount() + " rounds");
                 break;
             }
         }
 
     }
 
-    public void newGuess() {
+    /* methodes */
+    private void newGuess() {
         System.out.println("Make a guess to try again.");
-        guessedNumber = inputScanner.nextInt();
+        setGuessedNumber(inputScanner.nextInt());
     }
+
+    /* getters & setters */
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public int getGuessedNumber(){
+        return guessedNumber;
+    }
+    public void setGuessedNumber(int guessedNumber){
+        this.guessedNumber = guessedNumber;
+    }
+
+    public  int getRoundCount(){
+        return roundCount;
+    }
+    public void setRoundCount(){
+        this.roundCount +=1;
+    }
+
+    public  int getRandomNumber(){
+        return randomNumber;
+    }
+
 }
