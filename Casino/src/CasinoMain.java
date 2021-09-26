@@ -1,4 +1,5 @@
 import higherLowerGame.HigherLowerGame;
+import player.Player;
 
 import java.util.Scanner;
 
@@ -7,9 +8,14 @@ public class CasinoMain {
 
         Scanner inputScanner = new Scanner(System.in);
 
+        System.out.println("Welcome to Casino Royal!\n");
+        System.out.print("What's your name? ");
+        String name = inputScanner.nextLine();
+
+        Player player = new Player(name);
 
         HigherLowerGame higherLowerGame = new HigherLowerGame(inputScanner);
-        higherLowerGame.playGame();
+        higherLowerGame.playGame(player);
 
     }
 }
