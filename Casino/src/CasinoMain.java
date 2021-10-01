@@ -1,4 +1,4 @@
-import higherLowerGame.HigherLowerGame;
+import blackjack_v1.BlackjackGame;
 import player.Player;
 
 import java.util.Scanner;
@@ -14,8 +14,12 @@ public class CasinoMain {
 
         Player player = new Player(name);
 
-        HigherLowerGame higherLowerGame = new HigherLowerGame(inputScanner);
-        higherLowerGame.playGame(player);
+//        HigherLowerGame higherLowerGame = new HigherLowerGame(inputScanner);
+//        higherLowerGame.playGame(player);
+
+        BlackjackGame blackjackGame = new BlackjackGame(inputScanner, player);
+        blackjackGame.playGame();
+
 
     }
 }
