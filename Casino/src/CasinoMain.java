@@ -7,8 +7,9 @@
 //import blackjack_v2.deck.LowDeck;
 //import blackjack_v2.deck.SimpleDeck;
 
+//import slotmachineGame.SlotmachineGame;
 
-import slotmachineGame.SlotmachineGame;
+import hangman.HangmanGame;
 
 import java.util.Scanner;
 
@@ -50,8 +51,10 @@ public class CasinoMain {
 //            }
 //        } while (isTrue);
     
-        SlotmachineGame game = new SlotmachineGame(inputScanner, name);
+//        SlotmachineGame game = new SlotmachineGame(inputScanner, name);
+//        game.playGame();
+    
+        HangmanGame game = new HangmanGame(name, inputScanner);
         game.playGame();
-
     }
 }
