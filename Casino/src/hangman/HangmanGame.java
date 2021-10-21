@@ -1,6 +1,11 @@
 package hangman;
 
-import java.util.*;
+import player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class HangmanGame {
    private final static List<String> WORDS = List.of(
@@ -14,56 +19,90 @@ public class HangmanGame {
    private String guessingWord;
    private char[] guessingWordHidden;
    private boolean isGameRunning;
+   private int COINS_TO_WIN;
    
-   public HangmanGame(String name, Scanner inputScanner) {
+   public HangmanGame(Scanner inputScanner, String name) {
       this.player = new Player(name);
       this.inputScanner = inputScanner;
    }
    
-   
-   public void playGame() {
+   private void initGame() {
       this.guessingWord = WORDS.get(new Random().nextInt(WORDS.size()));
+      this.isGameRunning = true;
       this.guessingWordHidden = "•".repeat(guessingWord.length()).toCharArray();
       this.guessedLetters = new ArrayList<>();
       this.numberOfWrongGuesses = 0;
-      
+      this.COINS_TO_WIN = 10;
+      final int GAME_PRICE = 1;
+      player.setCoinsToPlay(GAME_PRICE);
+   }
+   
+   
+   public void playGame() {
       System.out.println(player.getName() + ", let's play the Hangman game.");
       
-      this.isGameRunning = true;
+      initGame();
+      
       while (isGameRunning) {
-         
          try {
             playerInput();
             checkGuess();
          } catch (DuplicateLetterException error) {
             System.out.println(error.getMessage());
          }
-         
       }
+      
+      
    }
    
    
    private void checkGuess() {
-      String message;
       
       if (findLetterInWord()) {
-         message = String.format("Correct! The letter %s is used", guessedLetter);
+         System.out.printf("Correct! The letter %s is used.\n", guessedLetter);
       } else {
-         message = String.format("Wrong! The letter %s is not used", guessedLetter);
+         System.out.printf("Wrong! The letter %s is not used.\n", guessedLetter);
       }
+      renderImage();
       
-      if (numberOfWrongGuesses > 6) {
-         message = String.format("You lost! the guessed word was %s", guessingWord);
-         isGameRunning = false;
+      if (numberOfWrongGuesses >= ImageFactory.IMAGES.size() - 1) {
+         System.out.printf("You lost! the guessed word was %s.\n", guessingWord);
+         playAgain();
       }
       
       if (guessingWord.equals(new String(guessingWordHidden))) {
-         message = String.format("You won! the guessed word is %s", guessingWord);
-         isGameRunning = false;
+         System.out.printf("You won! the guessed word was %s.\n", guessingWord);
+         System.out.println("Your winning credit is " + player.getCoinsPlayerWon() + " coins.");
+         player.setCoinsPlayerWon(COINS_TO_WIN);
+         playAgain();
       }
+   }
+   
+   
+   private void playAgain() {
       
-      renderImage();
-      System.out.println(message);
+      boolean isTrue = true;
+      while (isTrue) {
+         
+         System.out.println(player.getName() + ", do you want to play again?\n" + " 1 = Play, 2 = Quit.");
+         String input = inputScanner.next();
+         
+         switch (input) {
+            case "1" -> {
+               initGame();
+               isTrue = false;
+            }
+            case "2" -> {
+               player.addCoinsToPlay();
+               System.out.println(player.getName() + ", thank you for playing. Your won " +
+                       player.getCoinsPlayerWon() + " coins, and your total playing coins are now " +
+                       player.getCoinsToPlay());
+               isTrue = false;
+               isGameRunning = false;
+            }
+            default -> System.out.println("Wrong input? Try again.");
+         }
+      }
    }
    
    
@@ -72,7 +111,7 @@ public class HangmanGame {
       while (isTrue) {
          System.out.println("Guess a letter in the word.");
          System.out.println(guessingWordHidden);
-         String inputLetter = inputScanner.nextLine();
+         String inputLetter = inputScanner.next();
          
          if (inputLetter.length() > 1) {
             System.out.println("Sorry, not more then one letter. Try again.");
@@ -108,7 +147,6 @@ public class HangmanGame {
       for (String image : images) {
          System.out.println(image);
       }
-      System.out.println(numberOfWrongGuesses);
       System.out.println(guessingWordHidden);
    }
 }

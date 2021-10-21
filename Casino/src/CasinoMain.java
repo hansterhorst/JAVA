@@ -1,9 +1,10 @@
-import blackjack_v2.blackjack.Blackjack;
+//import blackjack_v2.blackjack.Blackjack;
 //import blackjack_v2.blackjack.LowBlackjack;
 //import blackjack_v2.deck.LowDeck;
-import blackjack_v2.blackjack.SimpleBlackjack;
-import blackjack_v2.deck.SimpleDeck;
+//import blackjack_v2.blackjack.SimpleBlackjack;
+//import blackjack_v2.deck.SimpleDeck;
 //import higherLowerGame.HigherLowerGame;
+import hangman.HangmanGame;
 import player.Player;
 import slotmachineGame.SlotmachineGame;
 import slotmachineGame.slotmachine.Slotmachine;
@@ -29,7 +30,10 @@ public class CasinoMain {
 //        Blackjack game = new SimpleBlackjack(inputScanner, name, new SimpleDeck());
 //        game.playGame();
     
-        SlotmachineGame game = new SlotmachineGame(inputScanner, name);
+//        SlotmachineGame game = new SlotmachineGame(inputScanner, name);
+//        game.playGame();
+    
+        HangmanGame game = new HangmanGame(inputScanner, name);
         game.playGame();
 
     }
