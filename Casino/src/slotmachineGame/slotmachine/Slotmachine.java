@@ -1,6 +1,6 @@
 package slotmachineGame.slotmachine;
 
-import slotmachineGame.player.Player;
+import player.Player;
 import slotmachineGame.reel.Reel;
 import slotmachineGame.reel.ReelDeck;
 
@@ -9,13 +9,13 @@ import java.util.List;
 
 public abstract class Slotmachine {
    
-   protected final String gameName;
+   protected final String slotmachineName;
    protected final int numberOfReels;
    protected ReelDeck reelDeck;
    protected Player player;
    
-   public Slotmachine(String gameName, int numberOfReels, Player player) {
-      this.gameName = gameName;
+   public Slotmachine(String slotmachineName, int numberOfReels, Player player) {
+      this.slotmachineName = slotmachineName;
       this.player = player;
       this.numberOfReels = numberOfReels;
       
@@ -28,7 +28,7 @@ public abstract class Slotmachine {
    }
    
    public String getGameName() {
-      return gameName;
+      return slotmachineName;
    }
    
    public int roll() {
@@ -41,8 +41,8 @@ public abstract class Slotmachine {
    }
    
    public void renderIntro() {
-      System.out.println(player.getName()+", let's play " + gameName + ".");
-      System.out.println("Your credit is "+ player.getCredit());
+      System.out.println(player.getName()+", let's play " + slotmachineName + ".");
+      System.out.println("Your credit is "+ player.getCoinsToPlay());
    }
    
    public abstract int getRollPrice();

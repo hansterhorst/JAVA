@@ -1,12 +1,12 @@
 package slotmachineGame.slotmachine;
 
-import slotmachineGame.player.Player;
+import player.Player;
 import slotmachineGame.reel.Symbol;
 
 public class HighRoller extends Slotmachine {
    
-   public HighRoller(String name, int numberOfReels, Player player) {
-      super(name, numberOfReels, player);
+   public HighRoller(String slotmachineName, int numberOfReels, Player player) {
+      super(slotmachineName, numberOfReels, player);
    }
    
    @Override

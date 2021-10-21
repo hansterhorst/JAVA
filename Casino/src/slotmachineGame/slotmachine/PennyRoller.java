@@ -1,12 +1,12 @@
 package slotmachineGame.slotmachine;
 
-import slotmachineGame.player.Player;
+import player.Player;
 import slotmachineGame.reel.Symbol;
 
 public class PennyRoller extends Slotmachine {
    
-   public PennyRoller(String name, int numberOfReels, Player player) {
-      super(name, numberOfReels, player);
+   public PennyRoller(String slotmachineName, int numberOfReels, Player player) {
+      super(slotmachineName, numberOfReels, player);
    }
    
    @Override

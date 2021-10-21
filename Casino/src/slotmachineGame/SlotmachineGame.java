@@ -1,6 +1,6 @@
 package slotmachineGame;
 
-import slotmachineGame.player.Player;
+import player.Player;
 import slotmachineGame.slotmachine.FiveRoller;
 import slotmachineGame.slotmachine.HighRoller;
 import slotmachineGame.slotmachine.PennyRoller;
@@ -39,26 +39,27 @@ public class SlotmachineGame {
       playAgain();
       
       while (isGameRunning) {
+         
          runningGame();
       }
       
-      System.out.printf("Thanks for playing %s. You payout price is: %d",
-              currentSlotmachine.getGameName(), player.getPayout());
-      
+      System.out.printf("Thank you for playing %s. You coins to play is: %d\n",
+              currentSlotmachine.getGameName(), player.getCoinsToPlay());
    }
    
+   
    private void runningGame() {
-      
       boolean isTrue = true;
+      
       do {
-         if (player.getCredit() > 0 || player.getCredit() - currentSlotmachine.getRollPrice() > 0) {
+         if (player.getCoinsToPlay() > 0 || player.getCoinsToPlay() - currentSlotmachine.getRollPrice() > 0) {
             System.out.println(player.getName() + ", do you want to play again?\n" +
-                    "1. Play again. 2. Stop the slotmachine.");
+                    "1. Play, 2. Quit.");
             String userInput = inputScanner.nextLine();
             if (userInput.equals("1")) playAgain();
             if (userInput.equals("2")) {
                isTrue = false;
-               player.setPayout();
+               player.setCoinsToPlay(player.getCoinsPlayerWon());
                isGameRunning = false;
             }
          } else {
@@ -70,21 +71,26 @@ public class SlotmachineGame {
       
    }
    
+   
    private void playAgain() {
       
-      player.setCredit(currentSlotmachine.getRollPrice(), currentSlotmachine.roll());
+      player.setCoinsToPlay(currentSlotmachine.getRollPrice());
+      player.setCoinsPlayerWon(currentSlotmachine.roll());
+      System.out.println(player.getCoinsPlayerWon());
+      
       System.out.println(currentSlotmachine.render());
       
       if (currentSlotmachine.calculatePayout() > 0) {
          System.out.println("Yes WON!");
-         player.setCredit(currentSlotmachine.getRollPrice(), currentSlotmachine.roll());
+         player.setCoinsToPlay(currentSlotmachine.getRollPrice());
       } else {
          System.out.println("Shit nothing.");
       }
       
-      System.out.println(player.renderPlayerConditions());
+      System.out.println("You play credit is " + player.getCoinsToPlay());
       
    }
+   
    
    private void whichGameToPlay() {
       boolean isTrue = true;

@@ -5,6 +5,8 @@ import blackjack_v2.blackjack.SimpleBlackjack;
 import blackjack_v2.deck.SimpleDeck;
 //import higherLowerGame.HigherLowerGame;
 import player.Player;
+import slotmachineGame.SlotmachineGame;
+import slotmachineGame.slotmachine.Slotmachine;
 
 import java.util.Scanner;
 
@@ -24,7 +26,10 @@ public class CasinoMain {
 //        Blackjack game = new LowBlackjack(inputScanner, name, new LowDeck());
 //        game.playGame();
         
-        Blackjack game = new SimpleBlackjack(inputScanner, name, new SimpleDeck());
+//        Blackjack game = new SimpleBlackjack(inputScanner, name, new SimpleDeck());
+//        game.playGame();
+    
+        SlotmachineGame game = new SlotmachineGame(inputScanner, name);
         game.playGame();
 
     }
