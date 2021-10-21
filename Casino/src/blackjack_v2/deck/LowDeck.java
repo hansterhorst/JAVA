@@ -10,10 +10,12 @@ import java.util.Random;
 
 public class LowDeck extends Deck {
    
-   List<Card> lowDeck;
+   private List<Card> lowDeck;
+   private int deckIndex;
+   
    
    public LowDeck() {
-      
+      this.deckIndex = 0;
       this.lowDeck = new ArrayList<>();
       
       CardSuit[] suits = new CardSuit[]{
@@ -41,9 +43,8 @@ public class LowDeck extends Deck {
    
    @Override
    public Card getNextCard() {
-      Card nextCard = lowDeck.get(0);
-      lowDeck.remove(0);
-      return nextCard;
+      deckIndex += 1;
+      return lowDeck.get(deckIndex);
    }
    
    @Override
@@ -61,11 +62,17 @@ public class LowDeck extends Deck {
    
    @Override
    public boolean isEmpty() {
-      return lowDeck.isEmpty();
+      return lowDeck.size() == deckIndex;
    }
    
    @Override
    public int getDeckSize() {
       return lowDeck.size();
+   }
+   
+   
+   @Override
+   public void resetDeckIndex(){
+      this.deckIndex = 0;
    }
 }

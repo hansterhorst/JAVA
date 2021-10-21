@@ -14,4 +14,6 @@ public abstract class Deck {
    
    public abstract int getDeckSize();
    
+   public abstract void resetDeckIndex();
+   
 }

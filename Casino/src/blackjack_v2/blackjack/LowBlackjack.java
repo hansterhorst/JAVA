@@ -8,16 +8,20 @@ public class LowBlackjack extends Blackjack {
    
    private final Scanner scanner;
    private final Deck deck;
+   public final int COINS_TO_WIN;
    
    public LowBlackjack(Scanner scanner, String name, Deck lowDeck) {
-      super(scanner, name, lowDeck);
+      super(scanner, name, lowDeck, 10);
       this.scanner = scanner;
       this.deck = lowDeck;
+      this.COINS_TO_WIN = 20;
    }
    
    @Override
    protected void runGameLoop() {
+      
       if (currentPlayer.equals(player)) {
+         
          if (!player.isStaying() || !player.isBust()) {
             userInput();
          }
@@ -25,12 +29,12 @@ public class LowBlackjack extends Blackjack {
          if (player.isBust()) {
             System.out.println(player.getName() + ", you're BUSTED!");
             System.out.println(dealer.getName() + ", you WON!");
-            
             isPlaying = false;
          }
          
          if (player.hasBlackjack()) {
             System.out.println(player.getName() + ", BLACKJACK you WON!");
+            player.setCoinsPlayerWon(COINS_TO_WIN);
             isPlaying = false;
          }
          
@@ -45,6 +49,7 @@ public class LowBlackjack extends Blackjack {
          if (dealer.isBust()) {
             System.out.println("Dealer, you're BUSTED!");
             System.out.println(player.getName() + ", you WON!");
+            player.setCoinsPlayerWon(COINS_TO_WIN);
             isPlaying = false;
          }
          
@@ -71,15 +76,13 @@ public class LowBlackjack extends Blackjack {
    
    private void userInput() {
       boolean isTrue = true;
-      
       while (isTrue) {
          
          System.out.println(player.getName() + ", what is your next move?\n 1 = Stay, 2 = Hit");
-         String move = scanner.nextLine();
+         String move = scanner.next();
          
          switch (move) {
             case "1" -> { // stay
-//               player.performNextMove(deck, move);
                currentPlayer = dealer;
                isTrue = false;
             }
