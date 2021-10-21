@@ -1,4 +1,9 @@
-import higherLowerGame.HigherLowerGame;
+import blackjack_v2.blackjack.Blackjack;
+//import blackjack_v2.blackjack.LowBlackjack;
+//import blackjack_v2.deck.LowDeck;
+import blackjack_v2.blackjack.SimpleBlackjack;
+import blackjack_v2.deck.SimpleDeck;
+//import higherLowerGame.HigherLowerGame;
 import player.Player;
 
 import java.util.Scanner;
@@ -13,7 +18,13 @@ public class CasinoMain {
         String name = inputScanner.nextLine();
         Player player = new Player(name);
     
-        HigherLowerGame game = new HigherLowerGame(inputScanner, player);
+//        HigherLowerGame game = new HigherLowerGame(inputScanner, player);
+//        game.playGame();
+    
+//        Blackjack game = new LowBlackjack(inputScanner, name, new LowDeck());
+//        game.playGame();
+        
+        Blackjack game = new SimpleBlackjack(inputScanner, name, new SimpleDeck());
         game.playGame();
 
     }

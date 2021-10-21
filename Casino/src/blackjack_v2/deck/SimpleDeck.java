@@ -11,9 +11,10 @@ import java.util.Random;
 public class SimpleDeck extends Deck {
    
    List<Card> simpleDeck;
-   Random random = new Random();
+   private int deckIndex;
    
    public SimpleDeck() {
+      this.deckIndex = 0;
       this.simpleDeck = new ArrayList<>();
       CardSuit[] suits = new CardSuit[]{
               new CardSuit('♢', "Diamond", "Red"),
@@ -48,7 +49,7 @@ public class SimpleDeck extends Deck {
    @Override
    public void shuffle() {
       List<Card> shuffledList = new ArrayList<>();
-
+      Random random = new Random();
       for (int i = simpleDeck.size(); i > 0; i--) {
          int randomIndex = random.nextInt(simpleDeck.size());
          shuffledList.add(simpleDeck.get(randomIndex));
@@ -60,18 +61,23 @@ public class SimpleDeck extends Deck {
    
    @Override
    public boolean isEmpty() {
-      return simpleDeck.isEmpty();
+      return simpleDeck.size() == deckIndex;
    }
    
    @Override
    public Card getNextCard() {
-      Card nextCard = simpleDeck.get(0);
-      simpleDeck.remove(0);
-      return nextCard;
+      deckIndex += 1;
+      return simpleDeck.get(deckIndex);
    }
    
    @Override
    public int getDeckSize() {
       return simpleDeck.size();
+   }
+   
+   
+   @Override
+   public void resetDeckIndex(){
+      this.deckIndex = 0;
    }
 }

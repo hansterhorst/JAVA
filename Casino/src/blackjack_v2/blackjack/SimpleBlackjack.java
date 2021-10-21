@@ -8,16 +8,19 @@ public class SimpleBlackjack extends Blackjack {
    
    private final Scanner scanner;
    private final Deck deck;
+   private final int COINS_TO_WIN;
    
    public SimpleBlackjack(Scanner scanner, String name, Deck simpleDeck) {
-      super(scanner, name, simpleDeck);
+      super(scanner, name, simpleDeck, 20);
       this.scanner = scanner;
       this.deck = simpleDeck;
+      this.COINS_TO_WIN = 40;
    }
    
    @Override
    protected void runGameLoop() {
       if (currentPlayer.equals(player)) {
+         
          if (!player.isStaying() || !player.isBust()) {
             userInput();
          }
@@ -25,12 +28,12 @@ public class SimpleBlackjack extends Blackjack {
          if (player.isBust()) {
             System.out.println(player.getName() + ", you're BUSTED!");
             System.out.println(dealer.getName() + ", you WON!");
-            
             isPlaying = false;
          }
          
          if (player.hasBlackjack()) {
             System.out.println(player.getName() + ", BLACKJACK you WON!");
+            player.setCoinsPlayerWon(COINS_TO_WIN);
             isPlaying = false;
          }
          
@@ -45,6 +48,7 @@ public class SimpleBlackjack extends Blackjack {
          if (dealer.isBust()) {
             System.out.println("Dealer, you're BUSTED!");
             System.out.println(player.getName() + ", you WON!");
+            player.setCoinsPlayerWon(COINS_TO_WIN);
             isPlaying = false;
          }
          
@@ -75,11 +79,10 @@ public class SimpleBlackjack extends Blackjack {
       while (isTrue) {
          
          System.out.println(player.getName() + ", what is your next move?\n 1 = Stay, 2 = Hit");
-         String move = scanner.nextLine();
+         String move = scanner.next();
          
          switch (move) {
             case "1" -> { // stay
-//               player.performNextMove(deck, move);
                currentPlayer = dealer;
                isTrue = false;
             }
