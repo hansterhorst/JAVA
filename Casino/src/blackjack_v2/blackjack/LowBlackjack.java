@@ -1,10 +1,11 @@
 package blackjack_v2.blackjack;
 
 import blackjack_v2.deck.Deck;
+import game.Game;
 
 import java.util.Scanner;
 
-public class LowBlackjack extends Blackjack {
+public class LowBlackjack extends Blackjack implements Game {
    
    private final Scanner scanner;
    private final Deck deck;

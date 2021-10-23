@@ -1,5 +1,6 @@
 package hangman;
 
+import game.Game;
 import player.Player;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class HangmanGame {
+public class HangmanGame implements Game {
    private final static List<String> WORDS = List.of(
            "funny", "subway", "uptown", "beekeeper", "buffalo", "buzzard",
            "jackpot", "ivy", "strength", "zipper", "whiskey", "kiosk");

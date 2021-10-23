@@ -1,5 +1,6 @@
 package slotmachineGame;
 
+import game.Game;
 import player.Player;
 import slotmachineGame.slotmachine.FiveRoller;
 import slotmachineGame.slotmachine.HighRoller;
@@ -8,7 +9,7 @@ import slotmachineGame.slotmachine.Slotmachine;
 
 import java.util.Scanner;
 
-public class SlotmachineGame {
+public class SlotmachineGame implements Game {
    
    private final Player player;
    private final Scanner inputScanner;
@@ -105,7 +106,7 @@ public class SlotmachineGame {
                  slotmachines[1].renderWinningConditions(),
                  slotmachines[2].renderWinningConditions());
          
-         String input = inputScanner.nextLine();
+         String input = inputScanner.next();
          
          if (input.equals("1") || input.equals("2") || input.equals("3")) {
             int index = Integer.parseInt(input) - 1;

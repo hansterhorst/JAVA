@@ -1,11 +1,12 @@
 package higherLowerGame;
 
+import game.Game;
 import player.Player;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class HigherLowerGame {
+public class HigherLowerGame implements Game {
    
    private final Scanner inputScanner;
    private final Player player;

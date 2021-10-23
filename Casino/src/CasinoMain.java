@@ -16,10 +16,10 @@ public class CasinoMain {
 
         Scanner inputScanner = new Scanner(System.in);
 
-        System.out.println("Welcome to Casino Royal!\n");
-        System.out.print("What's your name? ");
-        String name = inputScanner.nextLine();
-        Player player = new Player(name);
+//        System.out.println("Welcome to Casino Royal!\n");
+//        System.out.print("What's your name? ");
+//        String name = inputScanner.nextLine();
+//        Player player = new Player(name);
     
 //        HigherLowerGame game = new HigherLowerGame(inputScanner, player);
 //        game.playGame();
@@ -33,8 +33,10 @@ public class CasinoMain {
 //        SlotmachineGame game = new SlotmachineGame(inputScanner, name);
 //        game.playGame();
     
-        HangmanGame game = new HangmanGame(inputScanner, name);
-        game.playGame();
+//        HangmanGame game = new HangmanGame(inputScanner, name);
+//        game.playGame();
 
+        Casino casino = new Casino(inputScanner);
+        casino.start();
     }
 }
